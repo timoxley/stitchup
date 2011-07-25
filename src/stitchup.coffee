@@ -6,19 +6,19 @@ assert = require('assert')
 argv = require('optimist')
     .usage('Usage: stitchup -s SOURCES [-o OUTFILE] [-m MODE]')
     .wrap(80)
-    .option('outfile', {
-        alias : 'o',
-        desc : 'Write the stitched bundle to this file',
-        default : 'application.js',
-    })
     .option('sources', {
         alias : 's',
         desc : 'paths to compile, eg ./lib',
         
     })
+    .option('outfile', {
+        alias : 'o',
+        desc : 'Write the stitched bundle to this file',
+        default : 'application.js',
+    })
     .option('mode', {
         alias : 'm',
-        desc : 'use -m DEVELOPMENT to compile uncompressed js',
+        desc : 'use DEVELOPMENT to compile uncompressed js',
         default : 'PRODUCTION'
     })
     .demand('sources')
