@@ -9,7 +9,7 @@ argv = require('optimist')
     .option('outfile', {
         alias : 'o',
         desc : 'Write the stitched bundle to this file',
-        default : __dirname + '/application.js',
+        default : 'application.js',
     })
     .option('sources', {
         alias : 's',
