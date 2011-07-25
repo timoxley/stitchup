@@ -1,5 +1,5 @@
 { "name": "stitchup"
-, "description": "Stich up a directory of commonjs modules into a single file for deployment. Provides browser-side require"
+, "description": "Command-line stitchjs. Easily package and minify Javascript & Coffeescript CommonJS modules. Provides stitchjs's browser-side require()"
 , "contributors":
   [ "Tim Oxley"]
 , "version": "0.1.3"
