@@ -14,27 +14,35 @@ All common JS modules in the supplied directory will be compressed and compiled 
     
 ### Modules will be available through synchronous require()
     Given this directory structure
-        app/ <- CommonJS modules
+        app/ ## CommonJS modules
           controllers/
             app.js
           models/
             cars.js
-        public/ <- Dir application is served from 
-          app.js <- Compiled CommonJS modules
+        public/ ## Dir application is served from 
+          app.js ## Stitched CommonJS modules 
           index.html
-        # On any webpage:
+          
+    $ stitchup -s app -o public/app.js      
+          
+    # On any webpage:
+    <script src="/jquery.js"></script>
+    <script src="/app.js"></script>
+    <script>
         $(function() {
-            require('controller/app').init()
-        }
-    
-    
-    # In the application controller:
+            var app = require('controllers/app');
+            app.init();
+        })
+    </script>
+
+    # And in the application controller:
     module.exports = {
         init: function() {
             var myCar = require('models/cars');
             myCar.drive();
         }
     }
+
 
 ### Run the provided example:
     $ git clone git://github.com/secoif/StitchUp.git
