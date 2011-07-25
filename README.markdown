@@ -5,9 +5,10 @@ Easily compress and package Javascript or Coffeescript CommonJS modules using th
 All common JS modules in the supplied directory will be compressed and compiled into a single javascript file (default: application.js). 
 
 ##Usage
-###common js modules in 'app', app served from 'public' 
+### StitchUp CommonJS modules located in 'app' to public/app.js 
     $ stitchup -s app -o public/app.js
-### compile in development (uncompressed) mode
+
+### Compile in development (uncompressed) mode
     $ stitchup -s app -o public/app.js -m DEVELOPMENT
 
 ##Modules will be available through synchronous require():
