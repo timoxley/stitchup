@@ -1,0 +1,19 @@
+{ "name": "StitchUp"
+, "description": "Stich up a directory of commonjs modules into a single file for deployment. Provides browser-side require"
+, "contributors":
+  [ "Tim Oxley"]
+, "version": "0.1.0"
+, "main": "./lib/stitchup"
+, "repository": "git://github.com/secoif/StitchUp.git"
+, "bin": {"stitchup" : "./lib/stitchup.js" } 
+, "dependencies":
+  { "stitch": ">=0.3.2"
+  , "uglify-js": ">=1.0.6"
+  , "optimist": ">=0.2.6"
+  }
+, "preferGlobal" : "true"
+, "devDependencies" :
+  { "coffee-script": ">=1.0.0"
+  }
+}
+

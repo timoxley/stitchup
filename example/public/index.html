@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StitchUp Demo</title>
+	<script src="/app.js"></script>
+	<script src="/jquery.js"></script>
+	<style>
+		body {
+			background: #FDF2E8;
+		}
+		#content {
+			width: 300px;
+			margin: 300px auto;
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 32px;
+			text-align: left;
+			color: #CA9E99;
+			
+			font-weight: bold;
+			letter-spacing: -1px;
+		}
+		h2 {
+			margin: 0;
+		}
+		#status {
+			text-align: right;
+			color: #CA9E99;
+			text-transform: uppercase;
+		}
+	</style>
+	<script>
+		$(function() {
+			var app = require('app.controller');
+			app.init();
+		})
+	</script>
+</head>
+<body>
+	<div id="content">
+		<h2>StitchUp is&hellip; </h2>
+		<h2 id="status">Borken :(</h2>
+	</div>
+<body>
+</html>
