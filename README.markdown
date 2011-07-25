@@ -4,6 +4,9 @@ Easily compress and package Javascript or Coffeescript CommonJS modules using th
 
 All common JS modules in the supplied directory will be compressed and compiled into a single javascript file (default: application.js). 
 
+##Installation
+    $ npm install -g stitchup
+
 ##Usage
 
 ### StitchUp CommonJS modules located in 'app' to public/app.js 
