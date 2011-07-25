@@ -1,6 +1,6 @@
 #Browser-side require(), minifier & packager for CommonJS modules
 
-Easily compress and package Javascript of Coffeescript CommonJS modules using this handy commandline tool (even for non-NodeJS projects!).
+Easily compress and package Javascript or Coffeescript CommonJS modules using this handy commandline tool (even for non-NodeJS projects!).
 
 All common JS modules in the supplied directory will be compressed and compiled into a single javascript file (default: application.js). 
 
