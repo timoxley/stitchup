@@ -13,11 +13,11 @@ Compression & Minification is provided by the uglify library https://github.com/
 
 ##Usage
 
-### StitchUp CommonJS modules located in 'app' to public/app.js 
-    $ stitchup -s app -o public/app.js
+### StitchUp CommonJS modules located in `app` to `public/bundle.js` 
+    $ stitchup -s app -o public/bundle.js
 
 ### Compile in development (uncompressed) mode
-    $ stitchup -s app -o public/app.js -m DEVELOPMENT
+    $ stitchup -s app -o public/bundle.js -m DEVELOPMENT
     
 ### Load modules via synchronous require()
     Given this directory structure
@@ -27,14 +27,14 @@ Compression & Minification is provided by the uglify library https://github.com/
           models/
             cars.js
         public/ ## Dir application is served from 
-          app.js ## Stitched CommonJS modules 
+          bundle.js ## Stitched CommonJS modules 
           index.html
           
     $ stitchup -s app -o public/app.js      
           
     # On any webpage:
     <script src="/jquery.js"></script>
-    <script src="/app.js"></script>
+    <script src="/bundle.js"></script>
     <script>
         $(function() {
             var app = require('controllers/app');
