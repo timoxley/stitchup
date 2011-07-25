@@ -1,4 +1,4 @@
-{ "name": "StitchUp"
+{ "name": "stitchup"
 , "description": "Stich up a directory of commonjs modules into a single file for deployment. Provides browser-side require"
 , "contributors":
   [ "Tim Oxley"]
