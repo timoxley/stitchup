@@ -29,7 +29,8 @@ Compression & Minification is provided by the uglify library https://github.com/
         public/ ## Dir application is served from 
           bundle.js ## Stitched CommonJS modules 
           index.html
-          
+
+    # Compile app folder:          
     $ stitchup -s app -o public/app.js      
           
     # On any webpage:
