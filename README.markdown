@@ -2,7 +2,11 @@
 
 Easily compress and package Javascript or Coffeescript CommonJS modules using this handy commandline tool (even for non-NodeJS projects!).
 
-All common JS modules in the supplied directory will be compressed and compiled into a single javascript file (default: application.js). 
+All common JS modules in the supplied directory will be compressed and compiled into a single javascript file, and can then be utilized via synchronous, browser-side require(). 
+
+StitchUp wraps the amazing stitch library https://github.com/sstephenson/stitch Thanks heaps sstephenson.
+
+Compression & Minification is provided by the uglify library https://github.com/mishoo/UglifyJS/.
 
 ##Installation
     $ npm install -g stitchup
@@ -15,7 +19,7 @@ All common JS modules in the supplied directory will be compressed and compiled 
 ### Compile in development (uncompressed) mode
     $ stitchup -s app -o public/app.js -m DEVELOPMENT
     
-### Modules will be available through synchronous require()
+### Load modules via synchronous require()
     Given this directory structure
         app/ ## CommonJS modules
           controllers/
@@ -64,4 +68,3 @@ All common JS modules in the supplied directory will be compressed and compiled 
   * Ability to 'watch' a directory and automatically recompile
 
 
-StitchUp wraps the amazing stitch library https://github.com/sstephenson/stitch Thanks heaps sstephenson.
