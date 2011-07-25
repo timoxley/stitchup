@@ -1,8 +1,8 @@
 #Browser-side require(), minifier & packager for CommonJS modules
 
-Easily package and minify Javascript & Coffeescript CommonJS modules using this handy commandline tool (even for non-NodeJS projects).
+Easily use Javascript & Coffeescript CommonJS modules in the browser using this handy commandline tool, even for non-NodeJS projects.
 
-CommonJS modules in the supplied directory are minified into a single javascript file, and can be imported inside the browser via synchronous `require()`. 
+A directory of [CommonJS modules](http://wiki.commonjs.org/wiki/Modules/1.0) is minified into a single javascript file, and each module can be exposed on demand in the browser via synchronous `require()`. 
 
 StitchUp wraps the amazing stitch library https://github.com/sstephenson/stitch Thanks heaps sstephenson.
 
