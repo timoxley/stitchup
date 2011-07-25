@@ -13,28 +13,18 @@ Minification is provided by the uglify library https://github.com/mishoo/UglifyJ
 
 ##Usage
 
-### StitchUp CommonJS modules located in `app` to `public/bundle.js` 
+### Stitch up CommonJS modules located in `app` to `public/bundle.js` 
     $ stitchup -s app -o public/bundle.js
 
 ### Compile in development (uncompressed) mode
     $ stitchup -s app -o public/bundle.js -m DEVELOPMENT
     
 ### Load modules via synchronous require()
-    Given this directory structure
-        app/ ## CommonJS modules
-          controllers/
-            app.js
-          models/
-            cars.js
-        public/ ## Dir application is served from 
-          bundle.js ## Stitched CommonJS modules 
-          index.html
 
-    # Compile app folder:          
-    $ stitchup -s app -o public/app.js      
+    # Stitch up modules in the ./app directory as ./public/bundle.js:          
+    $ stitchup -s ./app -o ./public/bundle.js      
           
-    # On any webpage:
-    <script src="/jquery.js"></script>
+    # Load the bundle on your website:
     <script src="/bundle.js"></script>
     <script>
         $(function() {
@@ -43,14 +33,13 @@ Minification is provided by the uglify library https://github.com/mishoo/UglifyJ
         })
     </script>
 
-    # And in the application controller:
+    # Use require() to reference modules from modules:
     module.exports = {
         init: function() {
             var myCar = require('models/cars');
             myCar.drive();
         }
     }
-
 
 ### Run the provided example:
     $ git clone git://github.com/secoif/StitchUp.git
@@ -67,5 +56,4 @@ Minification is provided by the uglify library https://github.com/mishoo/UglifyJ
 ## Future
 
   * Ability to 'watch' a directory and automatically recompile
-
 
