@@ -2,7 +2,7 @@
 , "description": "Command-line stitchjs. Easily package and minify Javascript & Coffeescript CommonJS modules. Provides stitchjs's browser-side require()"
 , "contributors":
   [ "Tim Oxley"]
-, "version": "0.1.3"
+, "version": "0.1.5"
 , "main": "./lib/stitchup"
 , "repository": "git://github.com/secoif/StitchUp.git"
 , "bin": {"stitchup" : "./lib/stitchup.js" } 
