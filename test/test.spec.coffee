@@ -2,6 +2,19 @@ exec = require('child_process').exec
 fs = require 'fs'
 
 describe "stitchup", ->
+  beforeEach ->
+    require('child_process').exec 'mkdir -p ./test/tmp', (error, stdout, stderr) ->
+      console.log error.message if error?
+      jasmine.asyncSpecDone()
+    jasmine.asyncSpecWait()
+    
+  afterEach ->
+    require('child_process').exec 'rm -Rf ./test/tmp', (error, stdout, stderr) ->
+      console.log error.message if error?
+      jasmine.asyncSpecDone()
+    jasmine.asyncSpecWait()
+
+        
   it 'displays usage', ->
     require('child_process').exec 'stitchup', (error, stdout, stderr) ->
       expect(error).toBeTruthy()
