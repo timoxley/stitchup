@@ -4,13 +4,9 @@ fs     = require('fs')
 assert = require('assert')
 
 argv = require('optimist')
-    .usage('Usage: stitchup -s SOURCES [-o OUTFILE] [-m MODE]')
+    .usage('Usage: stitchup [-o OUTFILE] [-m MODE] SOURCES')
     .wrap(80)
-    .option('sources', {
-        alias : 's',
-        desc : 'paths to compile, eg ./lib',
-        
-    })
+
     .option('outfile', {
         alias : 'o',
         desc : 'Write the stitched bundle to this file',
@@ -21,15 +17,21 @@ argv = require('optimist')
         desc : 'use DEVELOPMENT to compile uncompressed js',
         default : 'PRODUCTION'
     })
-    .demand('sources')
+    # .option('sources', {
+    #     alias : 's',
+    #     desc : 'paths to compile, eg ./lib',
+    # })
+    .demand(1)
     .argv
 
 mode = argv.mode    
 outfile = argv.outfile
-sources = argv.sources
+sources = argv._
+
+console.log(sources)
 
 package = stitch.createPackage
-  paths: [sources]
+  paths: sources
 
 
 package.compile (err, source) ->
