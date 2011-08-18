@@ -1,4 +1,4 @@
-#Browser-side require(), minifier & packager for CommonJS modules
+# Browser-side require(), minifier & packager for CommonJS modules
 
 Easily use Javascript & Coffeescript CommonJS modules in the browser using this handy commandline tool, even for non-NodeJS projects.
 
@@ -8,10 +8,10 @@ StitchUp wraps the amazing stitch library https://github.com/sstephenson/stitch 
 
 Minification is provided by the uglify library https://github.com/mishoo/UglifyJS/
 
-##Installation
+## Installation
     $ npm install -g stitchup
 
-##Usage
+## Usage
 
 ### Stitch up CommonJS modules located in `app` to `public/bundle.js` 
     $ stitchup -o public/bundle.js app
@@ -55,5 +55,5 @@ Minification is provided by the uglify library https://github.com/mishoo/UglifyJ
 
 ## Future
 
-  * Ability to 'watch' a directory and automatically recompile
+  * Ability to `watch` a directory and automatically recompile
 
