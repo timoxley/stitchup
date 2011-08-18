@@ -14,15 +14,15 @@ Minification is provided by the uglify library https://github.com/mishoo/UglifyJ
 ##Usage
 
 ### Stitch up CommonJS modules located in `app` to `public/bundle.js` 
-    $ stitchup -s app -o public/bundle.js
+    $ stitchup -o public/bundle.js app
 
 ### Compile in development (uncompressed) mode
-    $ stitchup -s app -o public/bundle.js -m DEVELOPMENT
+    $ stitchup -o public/bundle.js -m DEVELOPMENT app
     
 ### Load modules via synchronous require()
 
     # Stitch up modules in the ./app directory as ./public/bundle.js:          
-    $ stitchup -s ./app -o ./public/bundle.js      
+    $ stitchup -o ./public/bundle.js ./app     
           
     # Load the bundle on your website:
     <script src="/bundle.js"></script>
@@ -46,7 +46,7 @@ Minification is provided by the uglify library https://github.com/mishoo/UglifyJ
     Cloning into StitchUp...
     $ cd StitchUp
     $ cd example
-    $ stitchup -s ./app -o ./public/app.js
+    $ stitchup -o ./public/app.js ./app
     Compiled ./public/app.js.
     $ cd public/
     $ python -m "SimpleHTTPServer"
