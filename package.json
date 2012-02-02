@@ -1,19 +1,34 @@
-{ "name": "stitchup"
-, "description": "Command-line stitchjs. Easily package and minify Javascript & Coffeescript CommonJS modules. Provides stitchjs's browser-side require()"
-, "contributors":
-  [ "Tim Oxley"]
-, "version": "0.1.5"
-, "main": "./lib/stitchup"
-, "repository": "git://github.com/secoif/StitchUp.git"
-, "bin": {"stitchup" : "./lib/stitchup.js" } 
-, "dependencies":
-  { "stitch": ">=0.3.2"
-  , "uglify-js": ">=1.0.6"
-  , "optimist": ">=0.2.6"
-  }
-, "preferGlobal" : "true"
-, "devDependencies" :
-  { "coffee-script": ">=1.0.0"
+{
+  "name": "stitchup",
+  "description": "Command-line stitchjs. Easily package and minify Javascript & Coffeescript CommonJS modules. Provides stitchjs's browser-side require()",
+  "contributors": [
+    "Tim Oxley"
+  ],
+  "version": "0.1.6",
+  "main": "./lib/stitchup",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:timoxley/stitchup.git"
+  },
+  "bin": {
+    "stitchup": "./lib/stitchup.js"
+  },
+  "dependencies": {
+    "stitch": ">=0.3.2",
+    "uglify-js": ">=1.0.6",
+    "optimist": ">=0.2.6"
+  },
+  "preferGlobal": "true",
+  "devDependencies": {
+    "coffee-script": ">=1.0.0"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "Tim Oxley <secoif@gmail.com> (unit.io)",
+  "homepage": "https://github.com/timoxley/stitchup",
+  "scripts": {
+    "test": "mocha test/*.coffee"
   }
 }
-
