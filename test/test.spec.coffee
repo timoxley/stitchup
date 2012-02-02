@@ -1,137 +1,117 @@
 exec = require('child_process').exec
 fs = require 'fs'
+assert = require 'assert'
 
 describe "stitchup", ->
-  beforeEach ->
+  beforeEach (done) ->
     require('child_process').exec 'mkdir -p ./test/tmp', (error, stdout, stderr) ->
       console.log error.message if error?
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+      done()
     
-  afterEach ->
+  afterEach (done) ->
     require('child_process').exec 'rm -Rf ./test/tmp', (error, stdout, stderr) ->
       console.log error.message if error?
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+      done()
 
         
-  it 'displays usage', ->
+  it 'displays usage', (done) ->
     require('child_process').exec 'stitchup', (error, stdout, stderr) ->
-      expect(error).toBeTruthy()
-      expect(stderr).toContain('Usage:')
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+      assert.ok(error)
+      assert.ok(/Usage:/.test(stderr))
+      done()
   
-  it 'displays missing', ->
+  it 'displays missing', (done) ->
     require('child_process').exec 'stitchup', (error, stdout, stderr) ->
-      expect(error).toBeTruthy()
-      expect(stderr).toContain('Not enough non-option arguments: got 0, need at least 1')
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+      assert.ok(error)
+      assert.ok(/Not enough non-option arguments: got 0, need at least 1/.test(stderr))
+      done()
 
-  it 'compiles commonjs coffeescript modules', ->
+  it 'compiles commonjs coffeescript modules', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/a.js ./test/fixtures/a', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
       bundle = require('./tmp/a.js')
-      expect(bundle).toBeTruthy()
+      assert.ok(bundle)
       
-      expect(bundle.require('a')).toEqual('whoo')
-      
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
-  it 'compiles with no -s', ->
+      assert.equal(bundle.require('a'), 'whoo')
+      done()
+
+  it 'compiles with no -s', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/a.js ./test/fixtures/a', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
       bundle = require('./tmp/a.js')
-      expect(bundle).toBeTruthy()
+      assert.ok(bundle)
 
-      expect(bundle.require('a')).toEqual('whoo')
-
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
-  it 'compiles multiple sources with no -s', ->
-     require('child_process').exec 'stitchup -o ./test/tmp/ab.js ./test/fixtures/a ./test/fixtures/b', (error, stdout, stderr) ->
-       expect(error).toBeFalsy()
-       expect(stderr).toBeFalsy()
+      assert.equal(bundle.require('a'), 'whoo')
+      done()
+  it 'compiles multiple sources with no -s', (done) ->
+    require('child_process').exec 'stitchup -o ./test/tmp/ab.js ./test/fixtures/a ./test/fixtures/b', (error, stdout, stderr) ->
+      assert.ok(!error)
+      assert.ok(!stderr)
        
-       bundle = require('./tmp/ab.js')
-       expect(bundle).toBeTruthy()
+      bundle = require('./tmp/ab.js')
+      assert.ok(bundle)
 
-       expect(bundle.require('a')).toEqual('whoo')
-       expect(bundle.require('b')).toEqual('whaarr')
-       
-       jasmine.asyncSpecDone()
-     jasmine.asyncSpecWait()
-  it 'compresses output', ->
+      assert.ok(bundle.require('a'), 'whoo')
+      assert.ok(bundle.require('b'), 'whaarr')
+      done()
+  it 'compresses output', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/a.1.js ./test/fixtures/a', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
       
       require('child_process').exec 'wc -l ./test/tmp/a.1.js', (error, stdout, stderr) ->
-        expect(stdout).toContain('0 ./test/tmp/a.1.js')
-      
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+        assert.ok(/0 .\/test\/tmp\/a\.1\.js/.test(stdout))
+        done()
     
-  it 'doesn\'t compress output in development mode', ->
+  it 'doesn\'t compress output in development mode', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/a.2.js -m DEVELOPMENT ./test/fixtures/a', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
 
       require('child_process').exec 'wc -l ./test/tmp/a.2.js', (error, stdout, stderr) ->
-        expect(stdout).toContain('./test/tmp/a.2.js')
-        expect(stdout).not.toContain('0 ./test/tmp/a.2.js')
-      
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
-  
-  it 'compiles nested coffeescript commonjs modules', ->
+        assert.ok(/\.\/test\/tmp\/a\.2\.js/.test(stdout))
+        assert.ok(!(/0 \.\/test\/tmp\/a\.2\.js/.test(stdout)))
+        done()
+  it 'compiles nested coffeescript commonjs modules', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/b.js ./test/fixtures/b', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
+
       bundle = require('./tmp/b.js')
-      expect(bundle).toBeTruthy()
-      expect(
+      assert.ok(bundle)
+      assert.throws(
               ->
                 bundle.require('a')
-            ).toThrow("module 'a' not found")
+            ,/module 'a' not found/)
       
-      expect(bundle.require('b')).toEqual('whaarr')
-      expect(bundle.require('nesting/nesting')).toEqual('whooo')
-      
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
-  
-  it 'compiles commonjs javascript modules', ->
+      assert.equal(bundle.require('b'), 'whaarr')
+      assert.equal(bundle.require('nesting/nesting'), 'whooo')
+      done()
+  it 'compiles commonjs javascript modules', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/c.js ./test/fixtures/c', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
+
       bundle = require('./tmp/c.js')
-      expect(bundle).toBeTruthy()
+      assert.ok(bundle)
       
-      expect(bundle.require('c')).toEqual('wheee')
-      
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+      assert.equal(bundle.require('c'), 'wheee')
+      done()
     
-  it 'doesn\'t expose anything from libs with no exports', ->
+  it 'doesn\'t expose anything from libs with no exports', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/d.js ./test/fixtures/d', (error, stdout, stderr) ->
-      expect(error).toBeFalsy()
-      expect(stderr).toBeFalsy()
+      assert.ok(!error)
+      assert.ok(!stderr)
+
       bundle = require('./tmp/d.js')
       d = bundle.require('d')
-      expect(d).toEqual({})
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()
+      assert.deepEqual(d, {})
+      done()
     
-  it 'displays an error if you try to compile an non-existant invalid file', ->
+  it 'displays an error if you try to compile an non-existant invalid file', (done) ->
     require('child_process').exec 'stitchup -o ./test/tmp/d.js ./test/fixtures/invalid', (error, stdout, stderr) ->
-      expect(error).toBeTruthy()
-      expect(stderr).toContain('AssertionError: Invalid source file given.')
-
-      jasmine.asyncSpecDone()
-    jasmine.asyncSpecWait()    
-
-    
+      assert.ok(error)
+      assert.ok(/AssertionError: Invalid source file given\./.test(stderr))
+      done()
