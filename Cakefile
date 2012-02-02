@@ -32,17 +32,6 @@ install = (callback) ->
        console.log(stdout)
        console.log('Install Success.') 
 
-
-run_tests = (callback) ->
-    exec 'jasmine-node --coffee ./test/', (error, stdout, stderr) ->
-        if (error != null)
-            console.log('Tests Run Error:')
-            console.log(stderr)
-            console.log('Perhaps you need to install jasmine-node: \'npm install -g jasmine-node\'')
-         
-        console.log(stdout)
-        callback?()
-
 task 'make', 'Build lib/ from src/', ->
     compile()
     
@@ -50,7 +39,3 @@ task 'make', 'Build lib/ from src/', ->
 task 'install', 'Build then use npm to install stitchup as a global, executable module', ->
     invoke 'make'
     install()
-       
-task 'test', ->
-    run_tests()
-    
