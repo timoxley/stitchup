@@ -14,9 +14,9 @@
     "stitchup": "./lib/stitchup.js"
   },
   "dependencies": {
-    "stitch": ">=0.3.2",
-    "uglify-js": ">=1.0.6",
-    "optimist": ">=0.2.6"
+    "stitch": "~0.3.3",
+    "uglify-js": "~1.2.5",
+    "optimist": "~0.3.1"
   },
   "preferGlobal": "true",
   "devDependencies": {
