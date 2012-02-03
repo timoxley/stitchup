@@ -1,4 +1,5 @@
 #!/usr/bin/env node 
+
 (function() {
   var argv, assert, fs, mode, outfile, package, sources, stitch;
 
