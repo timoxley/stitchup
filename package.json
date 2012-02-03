@@ -1,11 +1,11 @@
 {
   "name": "stitchup",
-  "description": "Command-line stitchjs. Easily package and minify Javascript & Coffeescript CommonJS modules. Provides stitchjs's browser-side require()",
+  "description": "Use stitch from the commandline. Minify your JS and get browser-side require().",
   "contributors": [
     "Tim Oxley"
   ],
-  "version": "0.1.6",
-  "main": "./lib/stitchup",
+  "version": "0.1.7",
+  "main": "./bin/stitchup",
   "repository": {
     "type": "git",
     "url": "git@github.com:timoxley/stitchup.git"
