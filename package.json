@@ -4,7 +4,7 @@
   "contributors": [
     "Tim Oxley"
   ],
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "./bin/stitchup",
   "repository": {
     "type": "git",
