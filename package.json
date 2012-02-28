@@ -11,7 +11,7 @@
     "url": "git@github.com:timoxley/stitchup.git"
   },
   "bin": {
-    "stitchup": "./lib/stitchup.js"
+    "stitchup": "./bin/stitchup"
   },
   "dependencies": {
     "stitch": "~0.3.3",
